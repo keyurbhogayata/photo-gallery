@@ -1,0 +1,42 @@
+<!-- <div *ngIf="image !== undefined; else elseBlock" class="flex">
+
+    <img class="mw-100 h-auto p-5" src='{{ image.url }}' alt='{{image.title}}'>
+    <h5 class="text-center">
+        {{image.description}}
+    </h5>
+</div>
+<ng-template #elseBlock>
+    <h1>
+        Sorry That Image does not exist !!
+    </h1>
+</ng-template> -->
+<div *ngIf="image !== undefined; else elseBlock" class="flex">
+
+    <img class="mw-100 h-auto p-5" src='{{ url$ | async }}' alt='{{title$ |async}}'>
+    <h5 class="text-center">
+        {{description$ | async}}
+    </h5>
+    <div class="d-block m-2">
+        <label for="image-name">Image name: </label>
+        <input class="form-control" id="image-name" [(ngModel)]="image.title" placeholder="Image Name"/>
+        
+    </div>
+    <div class="dropdown d-block m-2">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
+            <div *ngFor="let category of categories">
+                <li><a class="dropdown-item" (click)="selectcategory(category)">{{category}}</a></li>
+            </div>
+        </ul> 
+    </div>
+    <button class="btn btn-primary m-2" (click)="goBack()">Go Back</button>
+    <button class="btn btn-primary m-2" (click)="save()">Save</button>
+    <button class="btn btn-primary m-2" title="delete image" (click)="deleteimage(image.id)">Delete</button>
+</div>
+<ng-template #elseBlock>
+    <h1>
+        Sorry That Image does not exist !!
+    </h1>
+</ng-template>

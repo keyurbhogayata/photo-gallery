@@ -1,0 +1,78 @@
+<div class="m-2 p-2">
+    <h3>Categories</h3>
+    <div class="">
+        <div>
+            <h4 class="form-group">To Add Image</h4>
+            <label for="new-image" class="d-inline-block">Add Image url: </label>
+            <input id="new-image" class="form-control form-control-sm" value="https://picsum.photos/300/300"
+                #imageurl />
+            <button class="btn btn-primary m-1 d-block" (click)="addimage(imageurl.value); 
+                    imageurl.value = ''">
+                Add image by url
+            </button>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap">
+        <div *ngFor="let category of Categories">
+            <button type="button" class="btn btn-primary m-1 d-inline-block" (click)="selectcategory(category)">
+                {{ category }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- add grid -->
+<div class="album">
+    <div class="d-flex justify-content-evenly flex-wrap">
+        <div class="mx-auto" *ngFor="let image of Images; trackBy: trackByImgid">
+            <div *ngIf="categorycurrent === 'default'; else elseTemplate">
+                <div class="card shadow m-2 d-block">
+                    <a [routerLink]="['/images', image.id]">
+                        <img src="{{ image.url }}" class="w-auto card-img-top rounded mx-auto d-block"
+                            style="width: 300px; height: 300px" alt="{{ image.title }}" />
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text">{{ image.description }}</p>
+                        <div class="d-flex align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    [routerLink]="['/images', image.id]" 
+                                    target="_blank">
+                                    View & Edit
+                                </button>
+                                <button type="button" title="delete image" class="btn btn-sm btn-outline-secondary"
+                                    (click)="deleteimage(image.id)">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #elseTemplate>
+                <div *ngIf="image.category === categorycurrent">
+                    <div class="card shadow m-2 d-block">
+                        <a [routerLink]="['/images', image.id]" target="_blank">
+                            <img src="{{ image.url }}" class="w-auto card-img-top rounded mx-auto d-block"
+                                style="width: 400px; height: 300px" alt="{{ image.title }}" />
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text">{{ image.description }}</p>
+                            <div class="d-flex align-items-center">
+                                <div class="btn-group">
+                                    <a [routerLink]="['/images', image.id]" target="_blank">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                                            View & Edit
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
