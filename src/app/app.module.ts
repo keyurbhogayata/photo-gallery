@@ -16,6 +16,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { InMemoryDataService } from './services/in-memory-data.service'; 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormsModule } from '@angular/forms';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { AddImageComponent } from './components/add-image/add-image.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     ImageViewComponent,
     AboutComponent,
     NotfoundComponent,
+    CategoriesComponent,
+    AddImageComponent,
   ],
   imports: [
     FormsModule,

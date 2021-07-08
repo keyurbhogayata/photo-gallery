@@ -1,5 +1,5 @@
 import { Image } from '../modals/image';
-export const IMAGES: Image[] = [
+export let IMAGES: Image[] = [
     {
         title: 'nature1',
         id: 1,

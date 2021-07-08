@@ -1,0 +1,8 @@
+<div class="m-3 p-3 my-4 d-flex flex-wrap bg-white rounded-2 shadow-lg">
+    <h3 class="my-2">Categories </h3>
+    <div *ngFor="let category of Categories">
+        <button type="button" class="btn btn-dark shadow m-2 d-inline-block" (click)="selectcategory(category)">
+            {{ category }}
+        </button>
+    </div>
+</div>

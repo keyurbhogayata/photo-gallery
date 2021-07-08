@@ -8,7 +8,7 @@ import { IMAGES } from '../data/IMAGES';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const images = IMAGES;
+    let images = IMAGES;
     return {images};
   }
 
