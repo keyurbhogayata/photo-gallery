@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GallaryDashboardComponent } from './components/gallary-dashboard/gallary-dashboard.component';
+import { GallaryDashboardComponent } from './components/gallery-dashboard/gallery-dashboard.component';
 import { AppComponent } from './app.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
 import { AboutComponent } from './components/about/about.component';

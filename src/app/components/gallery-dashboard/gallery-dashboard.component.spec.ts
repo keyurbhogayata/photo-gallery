@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GallaryDashboardComponent } from './gallary-dashboard.component';
+import { GallaryDashboardComponent } from './gallery-dashboard.component';
 
 describe('GallaryDashboardComponent', () => {
   let component: GallaryDashboardComponent;
