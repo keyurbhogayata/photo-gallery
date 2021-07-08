@@ -7,7 +7,7 @@ import { navigation_option } from 'src/app/modals/navigation_option';
 })
 export class NavbarComponent implements OnInit {
 
-  title: string = 'Image Gallary';
+  title: string = 'Photo Gallary';
   navigation_options: navigation_option[] = [
     {
       title: "Home",
