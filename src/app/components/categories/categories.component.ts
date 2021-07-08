@@ -22,7 +22,7 @@ export class CategoriesComponent implements OnInit {
     this.Categories$ = this._ImageService.getCategories$();
     this.Categories$.subscribe(category => {
       if(category !== undefined) this.Categories.push(category);
-      console.log("in image grid",this.Categories)
+      // console.log("in image grid",this.Categories) 
   });
   }
   selectcategory(category: string){
