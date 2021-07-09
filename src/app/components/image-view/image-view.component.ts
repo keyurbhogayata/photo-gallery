@@ -30,8 +30,7 @@ export class ImageViewComponent implements OnInit {
     console.log('fetching id');
     const id = Number(this.route.snapshot.paramMap.get('id'));
     console.log("id has been fetched from params->", id);
-    const category = this.route.snapshot.paramMap.get('category');
-    console.log("category has been fetched from params->", category);
+  
 
     
     this.image$ = this._ImageService.getImage$(id);
