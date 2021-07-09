@@ -1,4 +1,4 @@
-import { Component, Input ,OnInit } from '@angular/core';
+import { Component, Input ,OnChanges,OnInit, SimpleChanges } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/modals/image';
 import { Observable} from 'rxjs';
@@ -7,8 +7,11 @@ import { Observable} from 'rxjs';
   templateUrl: './image-grid.component.html',
   styleUrls: ['./image-grid.component.css']
 })
-export class ImageGridComponent implements OnInit {
+export class ImageGridComponent implements OnInit{
+
   @Input() categorycurrent : string = 'default';
+  @Input() addedimage : Image | undefined;
+  
   Images: Image[] = [];
   Images$: Observable<Image[]> | undefined;
   constructor(private _ImageService: ImageService) {

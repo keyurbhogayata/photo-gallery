@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Image } from 'src/app/modals/image';
 
 @Component({
@@ -6,8 +6,9 @@ import { Image } from 'src/app/modals/image';
   templateUrl: './gallery-dashboard.component.html',
   styleUrls: ['./gallery-dashboard.component.css']
 })
-export class GallaryDashboardComponent implements OnInit {
-  categorycurrent: string = 'default';
+export class GalleryDashboardComponent implements OnInit {
+  @Output() categorycurrent: string = 'default';
+  @Output() image: Image | undefined;
   constructor() { }
 
   ngOnInit(): void {
@@ -15,6 +16,9 @@ export class GallaryDashboardComponent implements OnInit {
 
   selectcategory(category: string) {
     this.categorycurrent=category;
+  }
+  addimage(image : Image){
+      this.image = image
   }
   
 }

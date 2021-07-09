@@ -1,11 +1,11 @@
 <div class="m-3 p-3 my-4 bg-white rounded-2 shadow-lg">
-    <div class="">
-        <h4 class="form-group">To Add Image</h4>
-        <label for="new-image" class="d-inline-block">Paste Image URL: </label>
-        <input id="new-image" class="form-control mt-1 mb-3" value="https://picsum.photos/300/300" #imageurl />
-        <button class="btn btn-dark text-center me-1 my-1 d-block" (click)="addimage(imageurl.value); 
+    <div class="d-flex align-items-center justify-content-evenly my-auto">
+        
+        <label for="new-image" class="fs-4 fw-bold form-group">To Add Image</label>
+        <input id="new-image" class="form-control bg-light me-2" value="https://picsum.photos/1200/1000" #imageurl />
+        <button class="btn btn-dark me-auto" (click)="addimage(imageurl.value); 
                     imageurl.value = ''">
-            Add Image by URL
+        Add 
         </button>
     </div>
 </div>

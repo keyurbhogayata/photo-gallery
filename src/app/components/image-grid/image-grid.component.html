@@ -1,10 +1,10 @@
 <div class="album pb-5">
-    <div class="m-3 d-flex flex-wrap justify-content-evenly  bg-white rounded-2 shadow-lg">
-        <div class="mx-auto" *ngFor="let image of Images; trackBy: trackByImgid">
+    <div class="d-flex m-3 flex-wrap justify-content-evenly align-items-center bg-white rounded-2 shadow-lg">
+        <div *ngFor="let image of Images; trackBy: trackByImgid">
             <div *ngIf="categorycurrent === 'default'; else elseTemplate">
-                <div class="card shadow flex-fill mt-3 m-2 d-block">
+                <div class="card shadow flex-fill m-2 d-block">
 
-                    <img src="{{ image.url }}" class="w-auto card-img-top rounded mx-auto d-block"
+                    <img src="{{ image.url }}" class="w-auto card-img-top rounded d-block"
                         style="width: 300px; height: 300px" alt="{{ image.title }}" />
 
                     <div class="card-body">
@@ -27,22 +27,20 @@
             </div>
             <ng-template #elseTemplate>
                 <div *ngIf="image.category === categorycurrent">
-                    <div class="card shadow flex-fill mt-3 m-2 d-block">
+                    <div class="card shadow flex-fill m-2 d-block">
 
-                        <img src="{{ image.url }}" class="w-auto card-img-top rounded mx-auto d-block"
-                            style="width: 400px; height: 300px" alt="{{ image.title }}" />
-
+                        <img src="{{ image.url }}" class="w-auto card-img-top rounded d-block"
+                            style="width: 300px; height: 300px" alt="{{ image.title }}" />
+    
                         <div class="card-body">
                             <h5 class="card-title">{{image.title}}</h5>
                             <p class="card-text"> Description - {{ image.description }}</p>
                             <div class="d-flex align-items-center">
                                 <div class="btn-group">
-
                                     <button type="button" class="btn btn-sm btn-outline-secondary"
                                         [routerLink]="['/images', image.id]">
                                         View & Edit
                                     </button>
-
                                     <button type="button" title="delete image" class="btn btn-sm btn-outline-secondary"
                                         (click)="deleteimage(image)">
                                         Delete

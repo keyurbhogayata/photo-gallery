@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
       // console.log("in image grid",this.Categories) 
   });
   }
-  selectcategory(category: string){
+  selectcategoryfn(category: string){
     this.CategorycurrentEvent.emit(category);
   }
 
