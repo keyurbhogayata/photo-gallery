@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Image } from 'src/app/modals/image';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-image-view',
   templateUrl: './image-view.component.html',
@@ -11,12 +12,15 @@ import { Observable } from 'rxjs';
 })
 export class ImageViewComponent implements OnInit {
 
-  image: Image | undefined;
+  image: Image = {
+    id: 0,
+    title : '',
+    description : '',
+    category : '',
+    url:''
+  };
   image$: Observable<Image> | undefined;
   categories: string[] = [];
-  // url$ : Observable<string> | undefined;
-  // description$ : Observable<string> | undefined;
-  // title$ : Observable<string> | undefined;
   constructor(
     private _ImageService: ImageService,
     private route: ActivatedRoute,
@@ -30,28 +34,15 @@ export class ImageViewComponent implements OnInit {
     console.log('fetching id');
     const id = Number(this.route.snapshot.paramMap.get('id'));
     console.log("id has been fetched from params->", id);
-  
 
-    
     this.image$ = this._ImageService.getImage$(id);
     this.image$?.subscribe(image => this.image = image);
-
-    // this.url$ = this.image$?.pipe(
-    //   pluck('url')
-    // );
-    // this.description$ = this.image$?.pipe(
-    //   pluck('description')
-    // );
-
-    // this.title$ = this.image$?.pipe(
-    //   pluck('title')
-    // );
   }
   deleteimage(id: number): void {
     this.image == null;
     this._ImageService.deleteImage$(id).pipe(
     ).subscribe(_ =>
-      console.log("image deleted is image null ??",_ === null)
+      console.log("image deleted is image null ??", _ === null)
     );
   }
   getcategory() {
@@ -74,8 +65,10 @@ export class ImageViewComponent implements OnInit {
     if (this.image) {
       this._ImageService.updateImage$(this.image)
         .subscribe(
-          _ => console.log("image updated",_)
+          _ => console.log("image updated", _)
         );
     }
   }
 }
+
+

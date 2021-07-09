@@ -1,4 +1,50 @@
-<div *ngIf="image !== undefined; else elseBlock" class="">
+<div *ngIf="(image$ | async ) ; else elseBlock">
+
+    <div class="mw-100 m-4 bg-white rounded-2 p-2 shadow-lg">
+        <img class="mw-100 p-2 rounded-2" src='{{ (image$ | async)?.url }}' alt='{{(image$ | async)?.title}}'>
+        <h5 class="text-center">
+            {{(image$ | async)?.title}}
+        </h5>
+    </div>
+    <div class="m-4 bg-white rounded-2 p-2 shadow-lg">
+
+        <div class="d-block m-2">
+            <label for="update-image">Update Image url: </label>
+            <input class="form-control" id="update-image" [ngModel]=" ( image$ | async )?.url" 
+                value="https://picsum.photos/1000/1000" #imageurl />
+        </div>
+        <div class="d-block m-2">
+            <label for="image-name">Image name: </label>
+            <input class="form-control" id="image-name" [(ngModel)]="image.title" placeholder="Image Name" />
+
+        </div>
+        <div class="d-block m-2">
+            <label for="image-description">Description: </label>
+            <input class="form-control" id="image-description" [ngModel]="( image$ | async )?.description"
+                placeholder="Image description" />
+
+        </div>
+        <div class="d-block m-2">
+            <label for="image-category">Category: </label>
+            <input class="form-control" id="image-category" [ngModel]="( image$ | async )?.category" placeholder="Image category" />
+
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+
+            <button class="btn btn-dark m-2" (click)="goBack()">Go Back</button>
+            <button class="btn btn-dark m-2" (click)="save()">Save</button>
+            <button class="btn btn-dark m-2" title="delete image" (click)="deleteimage(image.id)">Delete</button>
+        </div>
+    </div>
+</div>
+<ng-template #elseBlock>
+    <h1>
+        Sorry That Image does not exist !!
+    </h1>
+</ng-template>
+
+
+<!-- <div *ngIf="image !== undefined; else elseBlock" class="">
 
     <div class="mw-100 m-4 bg-white rounded-2 p-2 shadow-lg">
         <img class="mw-100 p-2 rounded-2" src='{{ image.url }}' alt='{{image.title}}'>
@@ -10,23 +56,24 @@
 
         <div class="d-block m-2">
             <label for="update-image">Update Image url: </label>
-            <input  class="form-control" id="update-image" [(ngModel)]="image.url"value="https://picsum.photos/1000/1000"
-            #imageurl />
+            <input class="form-control" id="update-image" [(ngModel)]="image.url"
+                value="https://picsum.photos/1000/1000" #imageurl />
         </div>
         <div class="d-block m-2">
             <label for="image-name">Image name: </label>
-            <input class="form-control" id="image-name" [(ngModel)]="image.title" placeholder="Image Name"/>
-            
+            <input class="form-control" id="image-name" [(ngModel)]="image.title" placeholder="Image Name" />
+
         </div>
         <div class="d-block m-2">
             <label for="image-description">Description: </label>
-            <input class="form-control" id="image-description" [(ngModel)]="image.description" placeholder="Image description"/>
-            
+            <input class="form-control" id="image-description" [(ngModel)]="image.description"
+                placeholder="Image description" />
+
         </div>
         <div class="d-block m-2">
             <label for="image-category">Category: </label>
-            <input class="form-control" id="image-category" [(ngModel)]="image.category" placeholder="Image category"/>
-            
+            <input class="form-control" id="image-category" [(ngModel)]="image.category" placeholder="Image category" />
+
         </div>
         <div class="d-flex align-items-center justify-content-center">
 
@@ -35,9 +82,9 @@
             <button class="btn btn-dark m-2" title="delete image" (click)="deleteimage(image.id)">Delete</button>
         </div>
     </div>
-    </div>
-    <ng-template #elseBlock>
+</div>
+<ng-template #elseBlock>
     <h1>
         Sorry That Image does not exist !!
     </h1>
-</ng-template>
+</ng-template> -->
