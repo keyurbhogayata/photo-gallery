@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Image } from 'src/app/modals/image';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-image-view',
   templateUrl: './image-view.component.html',
@@ -12,13 +12,7 @@ import { tap } from 'rxjs/operators';
 })
 export class ImageViewComponent implements OnInit {
 
-  image: Image = {
-    id: 0,
-    title : '',
-    description : '',
-    category : '',
-    url:''
-  };
+  image: Image | undefined;
   image$: Observable<Image> | undefined;
   categories: string[] = [];
   constructor(
