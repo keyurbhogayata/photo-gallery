@@ -3,9 +3,10 @@ import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/modals/image';
 import { Observable} from 'rxjs';
 @Component({
-  selector: 'app-image-grid',
-  templateUrl: './image-grid.component.html',
-  styleUrls: ['./image-grid.component.css']
+    selector: 'app-image-grid',
+    templateUrl: './image-grid.component.html',
+    styleUrls: ['./image-grid.component.css'],
+    standalone: false
 })
 export class ImageGridComponent implements OnInit{
 

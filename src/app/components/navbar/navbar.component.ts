@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { navigation_option } from 'src/app/modals/navigation_option';
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
+    standalone: false
 })
 export class NavbarComponent implements OnInit {
 

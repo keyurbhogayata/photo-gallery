@@ -3,9 +3,10 @@ import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/modals/image';
 import { Observable } from 'rxjs';
 @Component({
-  selector: 'app-add-image',
-  templateUrl: './add-image.component.html',
-  styleUrls: ['./add-image.component.css']
+    selector: 'app-add-image',
+    templateUrl: './add-image.component.html',
+    styleUrls: ['./add-image.component.css'],
+    standalone: false
 })
 export class AddImageComponent implements OnInit {
   @Output() AddImageEvent = new EventEmitter<Image>();

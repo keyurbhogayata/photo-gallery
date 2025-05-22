@@ -2,9 +2,10 @@ import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ImageService } from 'src/app/services/image.service';
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+    selector: 'app-categories',
+    templateUrl: './categories.component.html',
+    styleUrls: ['./categories.component.css'],
+    standalone: false
 })
 export class CategoriesComponent implements OnInit {
   @Output() CategorycurrentEvent = new EventEmitter<string>();

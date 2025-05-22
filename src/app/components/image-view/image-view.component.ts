@@ -6,9 +6,10 @@ import { Image } from 'src/app/modals/image';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-image-view',
-  templateUrl: './image-view.component.html',
-  styleUrls: ['./image-view.component.css']
+    selector: 'app-image-view',
+    templateUrl: './image-view.component.html',
+    styleUrls: ['./image-view.component.css'],
+    standalone: false
 })
 export class ImageViewComponent implements OnInit {
 
