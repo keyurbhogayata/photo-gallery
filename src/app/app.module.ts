@@ -9,9 +9,9 @@ import { ImageGridComponent } from './components/image-grid/image-grid.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { InMemoryDataService } from './services/in-memory-data.service'; 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -31,13 +31,15 @@ import { AddImageComponent } from './components/add-image/add-image.component';
         AddImageComponent,
     ],
     bootstrap: [AppComponent],
-    exports: [RouterModule], imports: [FormsModule,
+    exports: [RouterModule], 
+    imports: [
+        HttpClientModule,
+        FormsModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-          dataEncapsulation: false,
-          passThruUnknownUrl: true,
-          apiBase: 'api'
-        })], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
+    ], 
+    // providers: [provideHttpClient(withInterceptorsFromDi())] }
+})
 export class AppModule { }
