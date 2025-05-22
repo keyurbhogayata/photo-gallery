@@ -35,5 +35,9 @@ import { AddImageComponent } from './components/add-image/add-image.component';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+          dataEncapsulation: false,
+          passThruUnknownUrl: true,
+          apiBase: 'api'
+        })], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
