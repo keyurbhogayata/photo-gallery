@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NavigationOption } from '../../modals/navigation-option';
+import type { NavigationOption } from '../../modals/navigation-option';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

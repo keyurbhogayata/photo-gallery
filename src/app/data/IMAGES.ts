@@ -1,4 +1,4 @@
-import { Image } from '../modals/image';
+import type { Image } from '../modals/image';
 export let IMAGES: Image[] = [
     {
         title: 'nature1',

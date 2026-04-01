@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Image } from '../modals/image';
-import { from, Observable, of, shareReplay } from 'rxjs';
+import type { Image } from '../modals/image';
+import { from, of, shareReplay, type Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, concatMap, distinct, tap } from 'rxjs/operators';
 

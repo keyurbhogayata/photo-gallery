@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, type OnInit, Output, EventEmitter, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ImageService } from '../../services/image.service';
 import { CommonModule } from '@angular/common';
 

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Image } from '../../modals/image';
+import type { Image } from '../../modals/image';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CategoriesComponent } from '../categories/categories.component';

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ImageService } from '../../services/image.service';
-import { Image } from '../../modals/image';
+import { type Image } from '../../modals/image';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

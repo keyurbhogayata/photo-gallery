@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Image } from '../modals/image';
+import type { InMemoryDbService } from 'angular-in-memory-web-api';
+import type { Image } from '../modals/image';
 import { IMAGES } from '../data/IMAGES';
 @Injectable({
   providedIn: 'root',

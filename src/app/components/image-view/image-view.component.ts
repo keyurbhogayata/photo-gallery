@@ -1,9 +1,11 @@
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, type OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ImageService } from '../../services/image.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
-import { Image } from '../../modals/image';
+import type { Image } from '../../modals/image';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-image-view',

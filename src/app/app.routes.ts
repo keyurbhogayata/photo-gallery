@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 import { GalleryDashboardComponent } from './components/gallery-dashboard/gallery-dashboard.component';
 import { ImageViewComponent } from './components/image-view/image-view.component';
 import { AboutComponent } from './components/about/about.component';
