@@ -1,36 +1,37 @@
-import { Component, Input ,OnChanges,OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/modals/image';
-import { Observable} from 'rxjs';
+
 @Component({
     selector: 'app-image-grid',
     templateUrl: './image-grid.component.html',
     styleUrls: ['./image-grid.component.css'],
     standalone: false
 })
-export class ImageGridComponent implements OnInit{
+export class ImageGridComponent implements OnInit {
 
-  @Input() categorycurrent : string = 'default';
-  @Input() addedimage : Image | undefined;
-  
-  Images: Image[] = [];
-  Images$: Observable<Image[]> | undefined;
-  constructor(private _ImageService: ImageService) {
-  }
+  @Input() categorycurrent: string = 'default';
+  @Input() addedimage: Image | undefined;
+
+  Images = signal<Image[]>([]); // Using signal for reactive state
+
+  constructor(private _ImageService: ImageService) {}
+
   ngOnInit(): void {
     this.getimages();
   }
+
   getimages() {
-    this.Images$ = this._ImageService.getImages$();
-    this.Images$?.subscribe((Images: Image[]) => {
-      this.Images = Images;
+    this._ImageService.getImages$().subscribe((images: Image[]) => {
+      this.Images.set(images); // Set the signal with the fetched images
     });
-  
   }
-  deleteimage(image: Image):void {
-      this.Images = this.Images.filter(i => i !== image);
-      this._ImageService.deleteImage$(image.id).subscribe();
+
+  deleteimage(image: Image): void {
+    this.Images.update(images => images.filter(i => i !== image)); // Update the signal state
+    this._ImageService.deleteImage$(image.id).subscribe();
   }
+
   trackByImgid(index: number, image: any): string {
     return image.id;
   }

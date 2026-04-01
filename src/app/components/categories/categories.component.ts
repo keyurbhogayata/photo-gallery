@@ -1,5 +1,4 @@
-import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, signal } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 @Component({
     selector: 'app-categories',
@@ -10,23 +9,24 @@ import { ImageService } from 'src/app/services/image.service';
 export class CategoriesComponent implements OnInit {
   @Output() CategorycurrentEvent = new EventEmitter<string>();
   categorycurrent: string = 'default';
-  Categories: string[] = [];
-  Categories$: Observable<string> | undefined;
-  constructor(private _ImageService: ImageService) {
-  }
+  Categories = signal<string[]>([]); // Using signal for reactive state
+
+  constructor(private _ImageService: ImageService) {}
 
   ngOnInit(): void {
     this.getcategories();
   }
+
   getcategories() {
     console.log("in getcategories2 in grid");
-    this.Categories$ = this._ImageService.getCategories$();
-    this.Categories$.subscribe(category => {
-      if(category !== undefined) this.Categories.push(category);
-      // console.log("in image grid",this.Categories) 
-  });
+    this._ImageService.getCategories$().subscribe(category => {
+      if (category !== undefined) {
+        this.Categories.update(categories => [...categories, category]); // Update signal
+      }
+    });
   }
-  selectcategoryfn(category: string){
+
+  selectcategoryfn(category: string) {
     this.CategorycurrentEvent.emit(category);
   }
 
