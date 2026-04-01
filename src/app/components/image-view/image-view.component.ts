@@ -4,15 +4,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
 import { Image } from '../../modals/image';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-image-view',
   templateUrl: './image-view.component.html',
   styleUrls: ['./image-view.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageViewComponent implements OnInit {
