@@ -1,7 +1,7 @@
 <div class="album pb-5">
     <div class="d-flex m-3 flex-wrap justify-content-evenly align-items-center bg-white rounded-2 shadow-lg">
-        <div *ngFor="let image of Images(); trackBy: trackByImgid">
-            <ng-container *ngIf="categorycurrent === 'default'; else filteredCategory">
+        <div *ngFor="let image of images(); trackBy: trackByImageId">
+            <ng-container *ngIf="currentCategory === 'default'; else filteredCategory">
                 <div class="card shadow flex-fill m-2 d-block">
                     <img [src]="image.url" class="w-auto card-img-top rounded d-block"
                         style="width: 300px; height: 300px" [alt]="image.title" />
@@ -15,7 +15,7 @@
                                     View & Edit
                                 </button>
                                 <button type="button" title="delete image" class="btn btn-sm btn-outline-secondary"
-                                    (click)="deleteimage(image)">
+                                    (click)="deleteImage(image)">
                                     Delete
                                 </button>
                             </div>
@@ -24,7 +24,7 @@
                 </div>
             </ng-container>
             <ng-template #filteredCategory>
-                <div *ngIf="image.category === categorycurrent">
+                <div *ngIf="image.category === currentCategory">
                     <div class="card shadow flex-fill m-2 d-block">
                         <img [src]="image.url" class="w-auto card-img-top rounded d-block"
                             style="width: 300px; height: 300px" [alt]="image.title" />
@@ -38,7 +38,7 @@
                                         View & Edit
                                     </button>
                                     <button type="button" title="delete image" class="btn btn-sm btn-outline-secondary"
-                                        (click)="deleteimage(image)">
+                                        (click)="deleteImage(image)">
                                         Delete
                                     </button>
                                 </div>

@@ -1,36 +1,35 @@
-import { Component, OnInit, Input, Output, EventEmitter, signal } from '@angular/core';
-import { ImageService } from 'src/app/services/image.service';
+import { Component, OnInit, Output, EventEmitter, signal, inject, ChangeDetectionStrategy } from '@angular/core';
+import { ImageService } from '../../services/image.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-categories',
-    templateUrl: './categories.component.html',
-    styleUrls: ['./categories.component.css'],
-    standalone: true,
-    imports: [CommonModule]
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.css'],
+  standalone: true,
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoriesComponent implements OnInit {
-  @Output() CategorycurrentEvent = new EventEmitter<string>();
-  categorycurrent: string = 'default';
-  Categories = signal<string[]>([]); // Using signal for reactive state
+  private readonly imageService = inject(ImageService);
 
-  constructor(private _ImageService: ImageService) {}
+  @Output() categorySelected = new EventEmitter<string>();
+
+  readonly categories = signal<string[]>([]);
 
   ngOnInit(): void {
-    this.getcategories();
+    this.fetchCategories();
   }
 
-  getcategories() {
-    console.log("in getcategories2 in grid");
-    this._ImageService.getCategories$().subscribe(category => {
-      if (category !== undefined) {
-        this.Categories.update(categories => [...categories, category]); // Update signal
+  fetchCategories(): void {
+    this.imageService.getCategories().subscribe(category => {
+      if (category) {
+        this.categories.update(current => [...current, category]);
       }
     });
   }
 
-  selectcategoryfn(category: string) {
-    this.CategorycurrentEvent.emit(category);
+  selectCategory(category: string): void {
+    this.categorySelected.emit(category);
   }
-
 }

@@ -1,12 +1,9 @@
 <div class="m-3 p-3 my-4 bg-white rounded-2 shadow-lg">
     <div class="d-flex align-items-center justify-content-evenly my-auto">
-        
-        <label for="new-image" class="fs-4 fw-bold form-group">To Add Image</label>
-        <input id="new-image" class="form-control bg-light me-2" value="https://picsum.photos/1200/1000" #imageurl />
-        <button class="btn btn-dark me-auto" (click)="addimage(imageurl.value); 
-                    imageurl.value = ''">
-        Add 
+        <label for="new-image" class="fs-4 fw-bold form-group">Add New Image URL:</label>
+        <input id="new-image" class="form-control bg-light me-2" value="https://picsum.photos/1200/1000" #imageUrl />
+        <button type="button" class="btn btn-dark me-auto" (click)="addImage(imageUrl.value); imageUrl.value = ''">
+            Add
         </button>
     </div>
 </div>
-

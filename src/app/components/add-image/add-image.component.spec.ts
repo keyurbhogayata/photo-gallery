@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { AddImageComponent } from './add-image.component';
 
 describe('AddImageComponent', () => {
@@ -8,7 +9,8 @@ describe('AddImageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddImageComponent ]
+      imports: [ AddImageComponent ],
+      providers: [ provideHttpClient(), provideHttpClientTesting() ]
     })
     .compileComponents();
   });

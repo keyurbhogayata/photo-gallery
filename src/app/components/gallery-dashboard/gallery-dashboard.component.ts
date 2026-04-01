@@ -1,5 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Image } from 'src/app/modals/image';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Image } from '../../modals/image';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CategoriesComponent } from '../categories/categories.component';
@@ -8,32 +8,29 @@ import { ImageGridComponent } from '../image-grid/image-grid.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
-    selector: 'app-gallery-dashboard',
-    templateUrl: './gallery-dashboard.component.html',
-    styleUrls: ['./gallery-dashboard.component.css'],
-    standalone: true,
-    imports: [
-      CommonModule,
-      NavbarComponent,
-      CategoriesComponent,
-      AddImageComponent,
-      ImageGridComponent,
-      FooterComponent
-    ]
+  selector: 'app-gallery-dashboard',
+  templateUrl: './gallery-dashboard.component.html',
+  styleUrls: ['./gallery-dashboard.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    CategoriesComponent,
+    AddImageComponent,
+    ImageGridComponent,
+    FooterComponent
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GalleryDashboardComponent implements OnInit {
-  @Output() categorycurrent: string = 'default';
-  @Output() image: Image | undefined;
-  constructor() { }
+export class GalleryDashboardComponent {
+  currentCategory = 'default';
+  addedImage: Image | undefined;
 
-  ngOnInit(): void {
+  selectCategory(category: string): void {
+    this.currentCategory = category;
   }
 
-  selectcategory(category: string) {
-    this.categorycurrent=category;
+  onImageAdded(image: Image): void {
+    this.addedImage = image;
   }
-  addimage(image : Image){
-      this.image = image
-  }
-  
 }

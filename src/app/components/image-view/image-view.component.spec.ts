@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { ImageViewComponent } from './image-view.component';
 
 describe('ImageViewComponent', () => {
@@ -8,7 +10,8 @@ describe('ImageViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageViewComponent ]
+      imports: [ ImageViewComponent, RouterTestingModule ],
+      providers: [ provideHttpClient(), provideHttpClientTesting() ]
     })
     .compileComponents();
   });

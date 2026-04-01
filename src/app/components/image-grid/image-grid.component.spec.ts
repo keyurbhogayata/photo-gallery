@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { ImageGridComponent } from './image-grid.component';
 
 describe('ImageGridComponent', () => {
@@ -8,7 +10,8 @@ describe('ImageGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImageGridComponent ]
+      imports: [ ImageGridComponent, RouterTestingModule ],
+      providers: [ provideHttpClient(), provideHttpClientTesting() ]
     })
     .compileComponents();
   });

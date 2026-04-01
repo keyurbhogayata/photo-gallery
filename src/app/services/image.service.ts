@@ -1,79 +1,74 @@
 import { Injectable, inject } from '@angular/core';
-import { Image } from 'src/app/modals/image';
-import { from, Observable, of } from 'rxjs';
+import { Image } from '../modals/image';
+import { from, Observable, of, shareReplay } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap, concatMap, distinct } from 'rxjs/operators';
+import { catchError, map, concatMap, distinct, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  private http = inject(HttpClient);
-  private imagesUrl = 'api/images';  // URL to web api
-
-  Categories$: Observable<string> | undefined;
-  httpOptions = {
+  private readonly http = inject(HttpClient);
+  private readonly imagesUrl = 'api/images';
+  private readonly httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor() {}
+  private imagesCache$?: Observable<Image[]>;
 
-  getImages$(): Observable<Image[]> {
-    return this.http.get<Image[]>(this.imagesUrl)
-      .pipe(
-        tap(_ => console.log('fetched images')),
-        catchError(this.handleError<Image[]>('getimages'))
+  getImages(): Observable<Image[]> {
+    if (!this.imagesCache$) {
+      this.imagesCache$ = this.http.get<Image[]>(this.imagesUrl).pipe(
+        shareReplay(1),
+        catchError(this.handleError<Image[]>('getImages', []))
       );
+    }
+    return this.imagesCache$;
   }
-  getImage$(id: number): Observable<Image> {
-    return this.getImages$()
-    .pipe(
-      map(imgs => imgs.find(img => img.id === id)!)
+
+  getImage(id: number): Observable<Image | undefined> {
+    return this.getImages().pipe(
+      map(images => images.find(img => img.id === id))
     );
   }
-  addImage$(image: Image): Observable<Image> {
-    return this.http.post<Image>(this.imagesUrl, image, this.httpOptions)
-    .pipe(
-      tap((newImage: Image) => console.log(`added image id=${newImage.id} with image=${newImage}`)),
-      catchError(this.handleError<Image>('addimage'))
+
+  addImage(image: Image): Observable<Image> {
+    return this.http.post<Image>(this.imagesUrl, image, this.httpOptions).pipe(
+      tap(() => this.clearCache()),
+      catchError(this.handleError<Image>('addImage'))
     );
   }
-  getCategories$(): Observable<string> {
-    return this.getImages$().pipe(
+
+  getCategories(): Observable<string> {
+    return this.getImages().pipe(
       map(images => images.map(img => img.category)),
       concatMap(categories => from(categories)),
       distinct()
     );
   }
-  updateImage$(image: Image): Observable<Image> {
-    return this.http.put<Image>(this.imagesUrl, image, this.httpOptions)
-    .pipe(
-      tap((updatedImage) => console.log(`updated image id=${updatedImage?.id},object=${updatedImage}`)),
+
+  updateImage(image: Image): Observable<Image> {
+    return this.http.put<Image>(this.imagesUrl, image, this.httpOptions).pipe(
+      tap(() => this.clearCache()),
       catchError(this.handleError<Image>('updateImage'))
     );
   }
-  deleteImage$(id: number): Observable<Image> {
+
+  deleteImage(id: number): Observable<Image> {
     const url = `${this.imagesUrl}/${id}`;
-    console.log("here in delete image");
-    return this.http.delete<Image>(url, this.httpOptions)
-    .pipe(
-      tap((deletedImage: Image) => {
-        console.log(`deleted image id=${id} with image=${deletedImage}`)
-        // this.getImages$().pipe(tap(_ => console.log("get images after delete", _)))
-      }),
-      catchError(this.handleError<Image>('deleteimage'))
+    return this.http.delete<Image>(url, this.httpOptions).pipe(
+      tap(() => this.clearCache()),
+      catchError(this.handleError<Image>('deleteImage'))
     );
   }
+
+  private clearCache(): void {
+    this.imagesCache$ = undefined;
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
+      console.error(`${operation} failed:`, error);
       return of(result as T);
     };
   }
