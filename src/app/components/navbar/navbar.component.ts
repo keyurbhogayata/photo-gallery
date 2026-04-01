@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { navigation_option } from 'src/app/modals/navigation_option';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [CommonModule, RouterModule]
 })
 export class NavbarComponent implements OnInit {
 

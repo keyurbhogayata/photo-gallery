@@ -1,24 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Image } from 'src/app/modals/image';
-import { from, Observable, of} from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap, concatMap } from 'rxjs/operators';
-import { distinct } from 'rxjs/operators';
+import { catchError, map, tap, concatMap, distinct } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
+  private http = inject(HttpClient);
   private imagesUrl = 'api/images';  // URL to web api
 
   Categories$: Observable<string> | undefined;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  constructor(
-    private http: HttpClient
-  ) {
 
-  }
+  constructor() {}
+
   getImages$(): Observable<Image[]> {
     return this.http.get<Image[]>(this.imagesUrl)
       .pipe(
@@ -39,16 +38,12 @@ export class ImageService {
       catchError(this.handleError<Image>('addimage'))
     );
   }
-  getCategories$() {
-    // working like a charm
-    this.Categories$ = this.getImages$()
-      .pipe(
-        map(x => x.map(x => x.category)),
-        concatMap(from),
-        distinct(y => y),
-        // tap(_ => console.log("tapped",_))
-      )
-    return from(this.Categories$);
+  getCategories$(): Observable<string> {
+    return this.getImages$().pipe(
+      map(images => images.map(img => img.category)),
+      concatMap(categories => from(categories)),
+      distinct()
+    );
   }
   updateImage$(image: Image): Observable<Image> {
     return this.http.put<Image>(this.imagesUrl, image, this.httpOptions)

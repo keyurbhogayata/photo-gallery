@@ -1,12 +1,15 @@
 import { Component, Input, OnInit, signal } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/modals/image';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-image-grid',
     templateUrl: './image-grid.component.html',
     styleUrls: ['./image-grid.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [CommonModule, RouterModule]
 })
 export class ImageGridComponent implements OnInit {
 

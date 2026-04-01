@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Location, CommonModule } from '@angular/common';
 import { Image } from 'src/app/modals/image';
 import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
     selector: 'app-image-view',
     templateUrl: './image-view.component.html',
     styleUrls: ['./image-view.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, FooterComponent]
 })
 export class ImageViewComponent implements OnInit {
 

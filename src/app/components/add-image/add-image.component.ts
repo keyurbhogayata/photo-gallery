@@ -1,12 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/modals/image';
-import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
     selector: 'app-add-image',
     templateUrl: './add-image.component.html',
     styleUrls: ['./add-image.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [CommonModule, FormsModule]
 })
 export class AddImageComponent implements OnInit {
   @Output() AddImageEvent = new EventEmitter<Image>();

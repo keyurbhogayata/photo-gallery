@@ -1,10 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, signal } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
+import { CommonModule } from '@angular/common';
+
 @Component({
     selector: 'app-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [CommonModule]
 })
 export class CategoriesComponent implements OnInit {
   @Output() CategorycurrentEvent = new EventEmitter<string>();
