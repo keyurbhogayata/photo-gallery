@@ -10,7 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-gallery-dashboard',
   templateUrl: './gallery-dashboard.component.html',
-  styleUrls: ['./gallery-dashboard.component.css'],
+  styleUrls: ['./gallery-dashboard.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

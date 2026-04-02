@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-image-grid',
   templateUrl: './image-grid.component.html',
-  styleUrls: ['./image-grid.component.css'],
+  styleUrls: ['./image-grid.component.scss'],
   standalone: true,
   imports: [CommonModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -7,7 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css'],
+  styleUrls: ['./about.component.scss'],
   standalone: true,
   imports: [CommonModule, NavbarComponent, FooterComponent],
   changeDetection: ChangeDetectionStrategy.OnPush

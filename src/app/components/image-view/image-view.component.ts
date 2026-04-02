@@ -10,7 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-image-view',
   templateUrl: './image-view.component.html',
-  styleUrls: ['./image-view.component.css'],
+  styleUrls: ['./image-view.component.scss'],
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush

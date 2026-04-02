@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-add-image',
   templateUrl: './add-image.component.html',
-  styleUrls: ['./add-image.component.css'],
+  styleUrls: ['./add-image.component.scss'],
   standalone: true,
   imports: [CommonModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush
