@@ -1,36 +1,15 @@
 <div class="album pb-5">
-    <div class="d-flex m-3 flex-wrap justify-content-evenly align-items-center bg-white rounded-2 shadow-lg">
+    <div class="d-flex m-3 flex-wrap justify-content-start align-items-stretch bg-white rounded-2 shadow-lg p-3">
         @for (image of images(); track image.id) {
-            @if (currentCategory === 'default') {
-                <div class="card shadow flex-fill m-2 d-block">
-                    <img [src]="image.url" class="w-auto card-img-top rounded d-block"
-                        style="width: 300px; height: 300px" [alt]="image.title" />
+            @if (currentCategory === 'default' || image.category === currentCategory) {
+                <div class="card shadow m-2" style="width: 300px;">
+                    <img [src]="image.url" class="card-img-top rounded-top"
+                        style="width: 100%; height: 300px; object-fit: cover;" [alt]="image.title" />
                     <div class="card-body">
-                        <h5 class="card-title">{{ image.title }}</h5>
-                        <p class="card-text">Description - {{ image.description }}</p>
+                        <h5 class="card-title text-truncate">{{ image.title }}</h5>
+                        <p class="card-text text-truncate">Description - {{ image.description }}</p>
                         <div class="d-flex align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary"
-                                    [routerLink]="['/images', image.id]">
-                                    View & Edit
-                                </button>
-                                <button type="button" title="delete image" class="btn btn-sm btn-outline-secondary"
-                                    (click)="deleteImage(image)">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            } @else if (image.category === currentCategory) {
-                <div class="card shadow flex-fill m-2 d-block">
-                    <img [src]="image.url" class="w-auto card-img-top rounded d-block"
-                        style="width: 300px; height: 300px" [alt]="image.title" />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ image.title }}</h5>
-                        <p class="card-text">Description - {{ image.description }}</p>
-                        <div class="d-flex align-items-center">
-                            <div class="btn-group">
+                            <div class="btn-group w-100">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                     [routerLink]="['/images', image.id]">
                                     View & Edit
